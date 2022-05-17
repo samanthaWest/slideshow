@@ -1,0 +1,19 @@
+@startuml
+actor User as User
+participant UI as UI
+participant API as API
+
+User -> UI: Select cat, shark, or both.
+
+UI -> API: GET\noptions: List[str]
+
+alt 200
+API --> UI: photos: List[str]
+else 400
+API --> UI: Client Error: Error msg
+else 500
+API --> UI: Internal Error: Error msg
+
+end
+
+@enduml
